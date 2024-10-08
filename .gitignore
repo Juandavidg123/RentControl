@@ -1,0 +1,15 @@
+# Virutal env
+venv/
+env/
+
+#databases
+*.sqlite3
+*.db
+
+# Cache
+__pycache__/
+__pycache__
+
+# Environments
+.env
+.env.local
