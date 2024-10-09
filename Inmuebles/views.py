@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import PropiedadesForm
 from django.contrib.auth.decorators import login_required
 from .models import Propiedades
+from .propiedadBuilder import propiedadBuilder
 
 # Create your views here.
 
@@ -27,10 +28,8 @@ def crearPropiedad(request):
             })
     else:
         try:
-            form = PropiedadesForm(request.POST)
-            propiedad = form.save(commit=False)
-            propiedad.dueño = request.user
-            propiedad.save()
+            propiedad = propiedadBuilder()
+            propiedad.set_propiedad(request.POST, request.user).set_save()
             return redirect('inmuebles')
         except:
             return render(request, 'crearPropiedad.html', {
