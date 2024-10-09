@@ -1,15 +1,21 @@
 {% extends 'home.html' %}
 
 {% block content %}
-<div>
-    <p>
-        Aqui veras tus propiedades arrendadas
-    </p>
-</div>
+<h2>Propiedades donde eres inquilino:</h2>
+<ul>
+  {% for propiedad in propiedades_inquilino %}
+    <li>{{ propiedad.tipo }} - {{ propiedad.direccion }}</li>
+  {% empty %}
+    <li>No eres inquilino de ninguna propiedad.</li>
+  {% endfor %}
+</ul>
 
-<div>
-    <p>
-        Aqui veras las propiedades en las que eres inquilino
-    </p>
-
+<h2>Propiedades donde eres dueño:</h2>
+<ul>
+  {% for propiedad in propiedades_dueño %}
+    <li>{{ propiedad.tipo }} - {{ propiedad.direccion }}</li>
+  {% empty %}
+    <li>No eres dueño de ninguna propiedad.</li>
+  {% endfor %}
+</ul>
 {% endblock %}
