@@ -1,0 +1,22 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ propiedad.tipo }}</h1>
+            <p>Direccion: {{ propiedad.direccion }}</p>
+            <p>Numero de inquilinos: {{ propiedad.numeroDeInquilinos }}</p>
+            <p>Dueño: {{ propiedad.dueño }}</p>
+            <p>Inquilino: {{ propiedad.inquilino }}</p>
+        </div>
+        {% if dueño %}
+        <div class="btn-group">
+            <a href="{% url 'updatePropiedad' propiedad.id %}" class="btn btn-outline-primary">Editar</a>
+            <a href="{% url 'delete' propiedad.id %}" class="btn btn-outline-danger">Eliminar</a>
+            <a href="{% url 'inmuebles' %}" class="btn btn-outline-primary">Volver</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

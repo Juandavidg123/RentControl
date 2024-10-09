@@ -3,19 +3,29 @@
 {% block content %}
 <h2>Propiedades donde eres inquilino:</h2>
 <ul>
-  {% for propiedad in propiedades_inquilino %}
-    <li>{{ propiedad.tipo }} - {{ propiedad.direccion }}</li>
-  {% empty %}
+    {% for propiedad in propiedades_inquilino %}
+    <li>
+        <a href="{% url 'detailPropiedad' propiedad.id %}">
+            {{ propiedad.tipo }} - {{ propiedad.direccion }}
+        </a>
+    </li>
+    {% empty %}
     <li>No eres inquilino de ninguna propiedad.</li>
-  {% endfor %}
+    {% endfor %}
 </ul>
 
 <h2>Propiedades donde eres dueño:</h2>
 <ul>
-  {% for propiedad in propiedades_dueño %}
-    <li>{{ propiedad.tipo }} - {{ propiedad.direccion }}</li>
-  {% empty %}
+    {% for propiedad in propiedades_dueño %}
+    <li>
+        <a href="{% url 'detailPropiedad' propiedad.id %}">
+            {{ propiedad.tipo }} - {{ propiedad.direccion }}
+        </a>
+    </li>
+    {% empty %}
     <li>No eres dueño de ninguna propiedad.</li>
-  {% endfor %}
+    {% endfor %}
 </ul>
+
+<p>Usuario actual: {{ usuario }}</p>
 {% endblock %}
