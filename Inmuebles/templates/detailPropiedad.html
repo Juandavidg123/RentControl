@@ -1,21 +1,64 @@
 {% extends 'home.html' %}
 
 {% block content %}
-<div class="container">
+<div class="container" style="margin-bottom: 95px;">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" style="padding: 8px;">
+            <h2>Detalle de la propiedad</h2>
             <h1>{{ propiedad.tipo }}</h1>
             <p>Direccion: {{ propiedad.direccion }}</p>
             <p>Numero de inquilinos: {{ propiedad.numeroDeInquilinos }}</p>
             <p>Dueño: {{ propiedad.dueño }}</p>
             <p>Inquilino: {{ propiedad.inquilino }}</p>
         </div>
+
         {% if dueño %}
-        <div class="btn-group">
+        <div class="btn-group" style="padding: 8px;">
             <a href="{% url 'updatePropiedad' propiedad.id %}" class="btn btn-outline-primary">Editar</a>
             <a href="{% url 'delete' propiedad.id %}" class="btn btn-outline-danger">Eliminar</a>
             <a href="{% url 'inmuebles' %}" class="btn btn-outline-primary">Volver</a>
         </div>
+
+        <div>
+            <h1 class="btn-group" style="padding: 8px;">Servicios asociados</h1>
+            <ul>
+                {% for servicio in servicios %}
+                <li>
+                    <strong>Agua:</strong> ${{ servicio.montoAgua }} - <strong>Pagado:</strong> {% if servicio.pagadoAgua %}Si{% else %}No{% endif %}
+                    <br><strong>Luz:</strong> ${{ servicio.montoLuz }} - <strong>Pagado:</strong> {% if servicio.pagadoLuz %}Si{% else %}No{% endif %}
+                    <br><strong>Gas:</strong> ${{ servicio.montoGas }} - <strong>Pagado:</strong> {% if servicio.pagadoGas %}Si{% else %}No{% endif %}
+                    <br><a href="{% url 'editarServicio' servicio.id %}" class="btn btn-sm btn-outline-info"
+                        style="margin-bottom: 8px;">Editar servicio</a>
+                    <br><a href="{% url 'eliminarServicio' servicio.id %}"
+                        class="btn btn-sm btn-outline-danger">Eliminar servicio</a>
+                </li>
+                {% empty %}
+                <li>No hay servicios asociados a esta propiedad</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Agregar nuevo servicio</h2>
+            <div style="padding: 8px;">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if not dueño %}
+        <h2>Servicios asociados</h2>
+        <ul>
+            <li>
+                <strong>Agua:</strong> ${{ servicio.montoAgua }} - <strong>Pagado:</strong> {% if servicio.pagadoAgua %}Si{% else %}No{% endif %}
+                <br><strong>Luz:</strong> ${{ servicio.montoLuz }} - <strong>Pagado:</strong> {% if servicio.pagadoLuz %}Si{% else %}No{% endif %}
+                <br><strong>Gas:</strong> ${{ servicio.montoGas }} - <strong>Pagado:</strong> {% if servicio.pagadoGas %}Si{% else %}No{% endif %}
+            </li>
+        </ul>
+
+        <a href="{% url 'inmuebles' %}" class="btn btn-outline-primary" style="max-width: 80px;">Volver</a>
         {% endif %}
     </div>
 </div>

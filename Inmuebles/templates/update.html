@@ -3,12 +3,12 @@
 <main class="col-md-3 offset-md-3 mt-2">
     <div class="card" style="width: 40rem; border: 1px solid black;">
         <div class="card-body">
-            <h1>Update task</h1>
+            <h1>Actualizar propiedad</h1>
             <form action="{% url 'updatePropiedad' propiedad.id %}" method="post" class="d-inline">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <div class="btn-group" role="group">
-                    <button type="submit" class="btn btn-outline-primary">
+                    <button type="submit" class="btn btn-outline-success">
                         Actualizar propiedad
                     </button>
                 </div>

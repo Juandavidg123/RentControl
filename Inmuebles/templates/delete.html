@@ -3,20 +3,20 @@
 {% block content %}
 <main class="col-md-4 offset-md-4 mt-5">
     <div class="card card-body" style="border: 1px solid black;">
-        <h2>Delete task</h2>
+        <h2>Eliminar propiedad</h2>
         <p>Estas seguro que quieres eliminar la propiedad "{{ propiedad.tipo }} - {{propiedad.direccion}} "?</p>
 
         <div class="btn-group" role="group">
             <form action="{% url 'deletePropiedad' propiedad.id %}" method="post" class="d-inline container">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-outline-danger">
-                    Delete
+                    Eliminar
                 </button>
             </form>
             <form action="{% url 'detailPropiedad' propiedad.id %}" method="post" class="d-inline container">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-outline-primary">
-                    Cancel
+                    Cancelar
                 </button>
             </form>
         </div>

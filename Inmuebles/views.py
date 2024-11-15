@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PropiedadesForm
 from django.contrib.auth.decorators import login_required
 from .models import Propiedades
+from Servicios.models import Servicios
+from Servicios.forms import ServiciosForm
 from .propiedadBuilder import propiedadBuilder
 
 # Create your views here.
@@ -42,11 +44,25 @@ def crearPropiedad(request):
 def detailPropiedad(request, id):
     propiedad = get_object_or_404(Propiedades, id=id);
     dueño = propiedad.dueño == request.user
+    servicios = Servicios.objects.filter(propiedad=propiedad)
+    
+    if request.method == 'POST':
+        form = ServiciosForm(request.POST)
+        if form.is_valid():
+            servicio = form.save(commit=False)
+            servicio.propiedad = propiedad
+            servicio.save()
+            return redirect('detailPropiedad', id)
+    else:
+        form = ServiciosForm()
+        
     return render(request, 'detailPropiedad.html', {
         'propiedad': propiedad,
-        'dueño': dueño
-        })
-
+        'form': form,
+        'dueño': dueño,
+        'servicios': servicios  
+    })
+    
 @login_required
 def delete(request, id):
     return render(request, 'delete.html', {

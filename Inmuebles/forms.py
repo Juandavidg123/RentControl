@@ -4,7 +4,7 @@ from django import forms
 class PropiedadesForm(forms.ModelForm):
     class Meta:
         model = Propiedades
-        fields = ['tipo', 'direccion', 'numeroDeInquilinos', 'inquilino']  # Excluye el campo 'dueño'
+        fields = ['tipo', 'direccion', 'numeroDeInquilinos', 'inquilino']  
         widgets = {
             'tipo': forms.TextInput(attrs={'class': 'form-control'}),
             'direccion': forms.TextInput(attrs={'class': 'form-control'}),
