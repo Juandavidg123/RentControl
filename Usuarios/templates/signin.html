@@ -3,7 +3,7 @@
 <main class="py-5">
     <div class="card card-body container" style="max-width: 20rem; border: 1px solid #000000;">
         <h1>Sign In</h1>
-        {{ error }}
+        <p style="color: red;">{{ error }}</p>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
