@@ -20,6 +20,34 @@ def signup(request):
             password2 = request.POST['password2']
             username = request.POST['username']
 
+            characterList = 'abcdefghijklmnopqrstuvwxyz'
+            characterCap = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            numbers = '0123456789'
+            
+            if len(password1) < 8:
+                return render(request, 'signup.html',{
+                    'form': UserCreationForm(),
+                    'error': 'Password must have at least 8 characters'
+                })
+            
+            elif not any(character in password1 for character in characterList):
+                return render(request, 'signup.html',{
+                    'form': UserCreationForm(),
+                    'error': 'Password must have at least one lowercase letter'
+                })
+            
+            elif not any(character in password1 for character in characterCap):
+                return render(request, 'signup.html',{
+                    'form': UserCreationForm(),
+                    'error': 'Password must have at least one uppercase letter'
+                })
+            
+            elif not any(character in password1 for character in numbers):
+                return render(request, 'signup.html',{
+                    'form': UserCreationForm(),
+                    'error': 'Password must have at least one number'
+                })
+            
             if password1 == password2:
                 usuario = usuarioBuilder()
                 user = usuario.set_username(username).set_password(password1).build()
