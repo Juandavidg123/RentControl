@@ -51,11 +51,15 @@
         {% if not dueño %}
         <h2>Servicios asociados</h2>
         <ul>
+            {% for servicio in servicios %}
             <li>
                 <strong>Agua:</strong> ${{ servicio.montoAgua }} - <strong>Pagado:</strong> {% if servicio.pagadoAgua %}Si{% else %}No{% endif %}
                 <br><strong>Luz:</strong> ${{ servicio.montoLuz }} - <strong>Pagado:</strong> {% if servicio.pagadoLuz %}Si{% else %}No{% endif %}
                 <br><strong>Gas:</strong> ${{ servicio.montoGas }} - <strong>Pagado:</strong> {% if servicio.pagadoGas %}Si{% else %}No{% endif %}
             </li>
+            {% empty %}
+            <li>No hay servicios asociados a esta propiedad</li>
+            {% endfor %}
         </ul>
 
         <a href="{% url 'inmuebles' %}" class="btn btn-outline-primary" style="max-width: 80px;">Volver</a>
