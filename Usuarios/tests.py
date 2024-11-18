@@ -23,9 +23,9 @@ class MySeleniumTests(LiveServerTestCase):
         password1_input = self.browser.find_element(By.NAME, "password1")
         password2_input = self.browser.find_element(By.NAME, "password2")
 
-        username_input.send_keys("Pablo")
-        password1_input.send_keys("pablo")
-        password2_input.send_keys("pablo")
+        username_input.send_keys("santiagoramos")
+        password1_input.send_keys("AWSDzx123*")
+        password2_input.send_keys("AWSDzx123*")
         
         password2_input.send_keys(Keys.RETURN)
         
@@ -37,8 +37,8 @@ class MySeleniumTests(LiveServerTestCase):
         username_input = self.browser.find_element(By.NAME, "username")
         password_input = self.browser.find_element(By.NAME, "password")
 
-        username_input.send_keys("Pablo")
-        password_input.send_keys("pablo")
+        username_input.send_keys("santiagoramos")
+        password_input.send_keys("AWSDzx123*")
         
         password_input.send_keys(Keys.RETURN)
 
