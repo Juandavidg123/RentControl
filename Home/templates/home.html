@@ -67,10 +67,12 @@
                     <h5 class="card-title">Web application</h5>
                     <p class="card-text">A web application developed in Django that allows users to manage their propierties efficiently.</p>
                 </div>
+                {% if not user.is_authenticated %}
                 <div class="card-body">
                     <p class="card-title"><a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a></p>
                     <p class="card-text"><a href="{% url 'signin' %}" class="btn btn-primary">Sign In</a></p>
                 </div>
+                {% endif %}
             </div>
         </main>
         {% endblock %}
